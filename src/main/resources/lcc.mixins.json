@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.example.lcc.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "BlockTileCompatMixin",
+    "ContraptionDisassemblyMixin"
+  ],
+  "client": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
