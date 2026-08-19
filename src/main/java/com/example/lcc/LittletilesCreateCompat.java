@@ -5,6 +5,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import team.creative.littletiles.LittleTilesRegistry;
+import com.simibubi.create.api.behaviour.movement.MovementBehaviour;
 
 @Mod(LittletilesCreateCompat.MOD_ID)
 public class LittletilesCreateCompat {
@@ -17,7 +18,36 @@ public class LittletilesCreateCompat {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            // Register LittleTiles blocks as Create movement actors.
+            LittleTilesMovementBehaviour behaviour =
+                    new LittleTilesMovementBehaviour();
 
+            MovementBehaviour.REGISTRY.register(
+                    LittleTilesRegistry.BLOCK_TILES.value(),
+                    behaviour
+            );
+
+            MovementBehaviour.REGISTRY.register(
+                    LittleTilesRegistry.BLOCK_TILES_TICKING.value(),
+                    behaviour
+            );
+
+            MovementBehaviour.REGISTRY.register(
+                    LittleTilesRegistry.BLOCK_TILES_RENDERED.value(),
+                    behaviour
+            );
+
+            MovementBehaviour.REGISTRY.register(
+                    LittleTilesRegistry.BLOCK_TILES_TICKING_RENDERED.value(),
+                    behaviour
+            );
+
+            MovementBehaviour.REGISTRY.register(
+                    LittleTilesRegistry.SIGNAL_CONVERTER.value(),
+                    behaviour
+            );
+
+            // Rotate LittleTiles data when Create transforms a contraption.
             LittleTilesBETransformer transformer =
                     new LittleTilesBETransformer();
 

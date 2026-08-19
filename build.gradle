@@ -28,7 +28,17 @@ sourceSets.main.resources {
 }
 
 repositories {
-    // Add here additional repositories if required by some of the dependencies below.
+    maven {
+        url = "https://maven.createmod.net"
+    }
+    repositories {
+        mavenCentral()
+
+        maven {
+            url = "https://maven.createmod.net"
+        }
+    }
+
 }
 
 base {
@@ -137,6 +147,10 @@ dependencies {
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html
     // http://www.gradle.org/docs/current/userguide/dependency_management.html
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    compileOnly "dev.engine-room.flywheel:flywheel-neoforge-api-1.21.1:1.0.6"
+
     implementation files("libs/CreativeCore_NEOFORGE_v2.13.43_mc1.21.1.jar")
     implementation files("libs/LittleTiles_BETA_v1.6.0-pre224_mc1.21.1.jar")
     implementation files("libs/create-1.21.1-6.0.10.jar")
